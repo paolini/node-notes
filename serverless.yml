@@ -7,37 +7,7 @@ provider:
   stage: dev
   region: eu-central-1
 
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
-
 functions:
-
   hello:
     handler: handler.hello
     events:
@@ -51,9 +21,6 @@ functions:
       - http:
           path: /api/notes/
           method: get
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
 
 resources:
   Resources:
@@ -86,3 +53,9 @@ resources:
               Resource: arn:aws:dynamodb:*:*:table/notes_notes
         Roles:
           - Ref: IamRoleLambdaExecution
+
+plugins:
+  - serverless-client-s3
+ custom:
+   client:
+     bucketName: notes-client
