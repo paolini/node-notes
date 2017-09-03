@@ -8,4 +8,6 @@ jspm_packages
 # Serverless directories
 .serverless
 
+client/build
+
 dynamodb_dump.csv
