@@ -56,6 +56,7 @@ resources:
 
 plugins:
   - serverless-client-s3
- custom:
+
+custom:
    client:
      bucketName: notes-client
